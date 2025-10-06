@@ -2,7 +2,7 @@ seo:
   title: BotItYourSelf.AI - Créez vos Agents IA en Minutes
   description: Plateforme SaaS pour créer des agents IA intelligents. Support multi-LLM, collaboration en équipe et 1000+ intégrations disponibles.
 
-title: 'Créez des [Agents IA]{.text-primary} Puissants en Minutes'
+title: 'Demandez en plus à [l''Intelligence Artificielle]{.text-primary}'
 description: La plateforme tout-en-un pour déployer des assistants intelligents qui automatisent vos tâches et boostent votre productivité.
 
 hero:
@@ -13,92 +13,59 @@ hero:
       icon: i-lucide-users
     - label: 1000+ Intégrations
       icon: i-lucide-plug-zap
-  links:
-    - label: Commencer Gratuitement
-      icon: i-lucide-rocket
-      trailing: true
-      color: primary
-      to: '#pricing'
-      size: xl
-    - label: Voir la Démo
-      icon: i-lucide-play-circle
-      size: xl
-      color: neutral
-      variant: outline
-      to: '#features'
+  links: []
 
 section:
   title: 'Une plateforme [complète]{.text-primary} pour automatiser votre business'
   description: Créez des agents IA qui travaillent pour vous 24/7. Choisissez le meilleur modèle pour chaque tâche et connectez tous vos outils favoris.
-  images:
-    mobile: '/images/macbook-mobile.svg'
-    desktop: '/images/macbook.svg'
   features:
     - title: Choisissez le meilleur modèle IA
       description: OpenAI, Claude, Mistral, Gemini... Utilisez le modèle le plus adapté à chaque tâche. Changez de modèle en un clic sans toucher au code.
       class: border-l border-primary pl-4
     - title: Travaillez en équipe efficacement
-      description: Chaque équipe a ses propres agents et données. Partagez vos assistants IA avec vos collaborateurs en toute sécurité.
+      description: Chaque équipe a ses propres agents et données. Partagez vos assistants IA avec vos collaborateurs en toute sécurité. Les actions sensibles nécessitent une approbation humaine avant exécution.
       class: border-l border-default pt-4 pl-4
     - title: Connectez tous vos outils
       description: GitHub, Slack, Notion, votre CRM, vos bases de données... Plus de 1000 intégrations disponibles pour automatiser vos workflows.
       class: border-l border-default pt-4 pl-4
 
 features:
-  title: 'Tout ce dont vous avez besoin pour [automatiser votre travail]{.text-primary}'
-  description: Des fonctionnalités pensées pour vous faire gagner du temps et booster votre productivité
+  title: 'Ce qui rend [BotItYourself unique]{.text-primary}'
+  description: Les fonctionnalités qui nous différencient vraiment des autres plateformes d'IA
   features:
-    - title: Tous les modèles IA à portée de main
-      description: Accédez à 10+ modèles IA (OpenAI, Claude, Mistral, Gemini...). Testez et comparez pour trouver le meilleur pour chaque tâche.
+    - title: Zéro code requis, 100% plug and play
+      description: Créez vos agents en quelques clics sans écrire une ligne de code. Interface intuitive pensée pour les équipes métier, pas pour les développeurs.
+      icon: i-lucide-zap
+      ui:
+        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
+
+    - title: Tous les modèles IA, toujours à jour
+      description: Accédez aux derniers modèles (GPT-4, Claude 3.5, Mistral, Gemini...) dès leur sortie. Nous ajoutons automatiquement les nouveautés IA pour que vous restiez à la pointe.
       icon: i-lucide-brain-circuit
       ui:
         leading: bg-primary/10 p-3 rounded-lg border border-primary/20
 
-    - title: Collaboration en équipe simplifiée
-      description: Créez des espaces pour chaque équipe avec ses propres agents et données. Partagez vos assistants IA en toute sécurité.
-      icon: i-lucide-users
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
-
-    - title: 1000+ Intégrations disponibles
-      description: Connectez GitHub, Slack, Notion, votre CRM, vos bases de données... Tout vos outils préférés en quelques clics.
-      icon: i-lucide-plug-zap
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
-
-    - title: Conversations instantanées
-      description: Chattez avec vos agents en temps réel. Réponses rapides et fluides pour une expérience utilisateur optimale.
-      icon: i-lucide-messages-square
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
-
-    - title: Validez les actions importantes
-      description: Gardez le contrôle ! Les agents demandent votre approbation avant d'effectuer des actions sensibles ou critiques.
+    - title: Approbations humaines intelligentes
+      description: Gardez le contrôle total. Les agents demandent automatiquement votre validation avant d'effectuer des actions sensibles (paiements, suppressions, envois importants).
       icon: i-lucide-shield-check
       ui:
         leading: bg-primary/10 p-3 rounded-lg border border-primary/20
 
-    - title: Interface moderne et intuitive
-      description: Dashboard élégant et facile à utiliser. Créez et gérez vos agents IA sans aucune compétence technique requise.
-      icon: i-lucide-palette
+    - title: Multi-équipes avec isolation complète
+      description: Chaque équipe (Ventes, RH, IT...) a ses propres agents, données et permissions. Zéro fuite d'information entre départements.
+      icon: i-lucide-users
       ui:
         leading: bg-primary/10 p-3 rounded-lg border border-primary/20
 
-    - title: Vos données en sécurité
-      description: Chiffrement de bout en bout, accès sécurisés, isolation des données par équipe. Votre confidentialité est notre priorité.
+    - title: 1000+ Intégrations via MCP
+      description: Connectez n'importe quel outil grâce au protocole MCP. GitHub, Slack, votre CRM interne, bases de données custom... Tout est possible.
+      icon: i-lucide-plug-zap
+      ui:
+        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
+
+    - title: Architecture sécurisée et scalable
+      description: Infrastructure production-ready avec chiffrement bout-en-bout, disponibilité 99.9% et capacité d'évolution automatique de 1 à 10,000 utilisateurs.
       icon: i-lucide-shield
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
-
-    - title: Déploiement rapide et fiable
-      description: Vos agents sont disponibles 24/7. Infrastructure robuste qui évolue automatiquement avec vos besoins.
-      icon: i-lucide-rocket
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
-
-    - title: Évolutif avec votre croissance
-      description: Commencez petit et grandissez à votre rythme. Notre plateforme s'adapte à vos besoins, de 1 à 1000+ utilisateurs.
-      icon: i-lucide-trending-up
       ui:
         leading: bg-primary/10 p-3 rounded-lg border border-primary/20
 
@@ -195,34 +162,6 @@ pricing:
         color: neutral
         variant: outline
         to: '#'
-
-testimonials:
-  title: 'Ils ont [automatisé leur travail]{.text-primary} avec BotItYourSelf.AI'
-  description: Découvrez comment nos clients gagnent du temps et boostent leur productivité grâce aux agents IA
-  items:
-    - quote: On a créé notre premier agent client en 15 minutes ! Maintenant il répond aux questions de nos utilisateurs 24/7. On a économisé des centaines d'heures de support.
-      user:
-        name: 'Sophie Martin'
-        description: 'CEO @ TechStartup'
-        target: _blank
-        avatar:
-          src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sophie'
-
-    - quote: Chaque équipe a ses propres agents IA adaptés à ses besoins. Les données restent isolées et sécurisées. Exactement ce qu'on cherchait pour notre entreprise.
-      user:
-        name: 'Thomas Dubois'
-        description: 'Directeur Technique @ FinTech Corp'
-        target: _blank
-        avatar:
-          src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Thomas'
-
-    - quote: Connecter GitHub, Slack et notre CRM a pris 5 minutes. Notre agent automatise maintenant toutes nos tâches répétitives. Notre productivité a explosé !
-      user:
-        name: 'Marie Leroy'
-        description: 'Product Manager @ SaaS Co'
-        target: _blank
-        avatar:
-          src: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Marie'
 
 cta:
   title: 'Prêt à [automatiser votre travail]{.text-primary} ?'

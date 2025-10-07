@@ -23,14 +23,15 @@ export default defineNuxtConfig({
     }
   },
 
-  // ❗Important : pas de SSR
-  ssr: false,
+  // SSR pour génération statique
+  ssr: true,
 
-  // ❗Force le build statique dans dist/
+  // Configuration Nitro pour génération statique
   nitro: {
     preset: 'static',
-    output: {
-      dir: 'dist'
+    prerender: {
+      crawlLinks: true,
+      routes: ['/']
     }
   }
 })

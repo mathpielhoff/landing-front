@@ -1,14 +1,15 @@
 <script setup lang="ts">
 const { data: page } = await useAsyncData('index', () => queryCollection('content').first())
+
 if (!page.value) {
   throw createError({ statusCode: 404, statusMessage: 'Page not found', fatal: true })
 }
 
 useSeoMeta({
-  title: page.value.seo?.title || page.value.title,
-  ogTitle: page.value.seo?.title || page.value.title,
-  description: page.value.seo?.description || page.value.description,
-  ogDescription: page.value.seo?.description || page.value.description
+  title: page.value?.seo?.title || page.value?.title || 'BotItYourSelf.AI',
+  ogTitle: page.value?.seo?.title || page.value?.title || 'BotItYourSelf.AI',
+  description: page.value?.seo?.description || page.value?.description || 'Créez vos agents IA',
+  ogDescription: page.value?.seo?.description || page.value?.description || 'Créez vos agents IA'
 })
 </script>
 

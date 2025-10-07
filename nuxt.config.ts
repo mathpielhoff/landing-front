@@ -9,8 +9,6 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   app: {
-    baseURL: './',
-    buildAssetsDir: '_nuxt/',
     head: {
       title: 'BotItYourSelf.AI - Créez vos Agents IA en Minutes',
       htmlAttrs: { lang: 'fr' },
@@ -31,7 +29,14 @@ export default defineNuxtConfig({
     preset: 'static',
     prerender: {
       crawlLinks: true,
-      routes: ['/']
-    }
+      routes: ['/'],
+      failOnError: false
+    },
+    compressPublicAssets: true
+  },
+
+  // Route rules pour SPA fallback
+  routeRules: {
+    '/': { prerender: true }
   }
 })

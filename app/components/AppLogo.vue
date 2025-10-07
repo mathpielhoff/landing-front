@@ -2,7 +2,7 @@
   <div class="flex items-center gap-3">
     <!-- Logo BotItYourSelf -->
     <img
-      src="/logos/botityourself.png"
+      src="/logos/biy_logo.png"
       alt="BotItYourSelf.AI"
       class="h-10 w-auto object-contain"
     >

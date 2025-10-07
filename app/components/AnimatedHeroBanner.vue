@@ -139,9 +139,21 @@ onMounted(() => {
         <!-- Mega glow background -->
         <div class="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-primary-600 via-purple-600 to-primary-400" />
 
-        <!-- Titre principal -->
+        <!-- Logo BotItYourself -->
         <div
           class="transition-all duration-1000"
+          :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
+        >
+          <img
+            src="/logos/biy_logo.png"
+            alt="BotItYourself Logo"
+            class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mx-auto object-contain drop-shadow-2xl mb-2"
+          >
+        </div>
+
+        <!-- Titre principal -->
+        <div
+          class="transition-all duration-1000 delay-200"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
           <h1 class="relative text-6xl md:text-7xl lg:text-8xl font-black leading-none mb-6">
@@ -160,7 +172,7 @@ onMounted(() => {
 
         <!-- Description -->
         <div
-          class="transition-all duration-1000 delay-300"
+          class="transition-all duration-1000 delay-[400ms]"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
           <p class="relative text-xl md:text-3xl text-gray-600 dark:text-gray-300 font-medium">
@@ -170,7 +182,7 @@ onMounted(() => {
 
         <!-- Sous-titre avec effet de gradient -->
         <div
-          class="mt-6 transition-all duration-1000 delay-500"
+          class="mt-6 transition-all duration-1000 delay-[600ms]"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
           <p class="relative text-sm md:text-lg text-gray-500 dark:text-gray-400">

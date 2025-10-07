@@ -18,7 +18,7 @@ useSeoMeta({
     class="relative"
   >
     <!-- Hero Banner animée "Bot X Yourself" - En premier -->
-    <UContainer class="pt-6 pb-16 md:pt-8 md:pb-20">
+    <UContainer class="pb-16 md:pb-20">
       <AnimatedHeroBanner />
     </UContainer>
 

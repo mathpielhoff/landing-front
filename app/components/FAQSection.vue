@@ -48,25 +48,25 @@ const faqs = [
     </template> -->
 
     <template #title>
-      <span class="text-3xl sm:text-4xl font-bold">
+      <span class="text-2xl sm:text-3xl md:text-4xl font-bold px-4">
         Questions <span class="text-primary">Fréquentes</span>
       </span>
     </template>
 
     <template #description>
-      <p class="text-lg text-muted max-w-2xl mx-auto">
+      <p class="text-base sm:text-lg text-muted max-w-2xl mx-auto px-4">
         Toutes les réponses aux questions que vous vous posez sur BotItYourSelf.AI
       </p>
     </template>
 
-    <UContainer class="mt-12">
+    <UContainer class="mt-8 sm:mt-12 px-4">
       <UAccordion
         :items="faqs"
         :ui="{
           wrapper: 'max-w-3xl mx-auto',
           item: {
-            base: 'mb-4',
-            padding: 'p-5',
+            base: 'mb-3 sm:mb-4',
+            padding: 'p-4 sm:p-5',
             rounded: 'rounded-lg',
             color: 'bg-accented'
           }

@@ -19,7 +19,7 @@ useSeoMeta({
     class="relative"
   >
     <!-- Hero Banner animée "Bot X Yourself" - En premier -->
-    <UContainer class="pb-16 md:pb-20">
+    <UContainer class="pb-12 sm:pb-16 md:pb-20">
       <AnimatedHeroBanner />
     </UContainer>
 
@@ -27,7 +27,7 @@ useSeoMeta({
       :description="page.description"
       :links="page.hero.links"
       :ui="{
-        container: 'md:pt-18 lg:pt-20',
+        container: 'pt-8 sm:pt-12 md:pt-18 lg:pt-20 px-4',
         title: 'max-w-3xl mx-auto'
       }"
     >
@@ -43,24 +43,24 @@ useSeoMeta({
       </template>
 
       <template #description>
-        <p class="text-lg text-muted mb-6">
+        <p class="text-base sm:text-lg text-muted mb-6">
           {{ page.description }}
         </p>
 
         <!-- Key Differentiators Badges -->
-        <div class="flex flex-wrap gap-3 justify-center mb-8">
+        <div class="flex flex-wrap gap-2 sm:gap-3 justify-center mb-8">
           <UBadge
             v-for="(badge, index) in page.hero.badges"
             :key="index"
             size="lg"
             variant="subtle"
             color="primary"
-            class="px-4 py-2"
+            class="px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm"
           >
             <template #leading>
               <UIcon
                 :name="badge.icon"
-                class="w-4 h-4"
+                class="w-3.5 h-3.5 sm:w-4 sm:h-4"
               />
             </template>
             {{ badge.label }}
@@ -107,7 +107,7 @@ useSeoMeta({
 
     <UPageSection
       id="pricing"
-      class="mb-32 overflow-hidden"
+      class="mb-20 sm:mb-32 overflow-hidden px-4"
       :title="page.pricing.title"
       :description="page.pricing.description"
       :plans="page.pricing.plans"

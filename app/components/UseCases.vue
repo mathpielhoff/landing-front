@@ -63,22 +63,22 @@ const filteredUseCases = computed(() => {
 <template>
   <UContainer class="py-16">
     <!-- Titre de la section -->
-    <div class="text-center mb-16">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">
+    <div class="text-center mb-12 px-4">
+      <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-4">
         Des <span class="text-primary">cas d'usage concrets</span> qui transforment votre quotidien
       </h2>
-      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+      <p class="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
         Découvrez comment les équipes utilisent BotItYourself pour gagner des heures chaque semaine
       </p>
     </div>
 
     <!-- Grid de cards modernes -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-10 px-4">
       <TransitionGroup name="card">
         <div
           v-for="useCase in filteredUseCases"
           :key="useCase.title"
-          class="group relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-6 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 overflow-hidden"
+          class="group relative bg-white dark:bg-gray-800 rounded-2xl border border-gray-200 dark:border-gray-700 p-5 sm:p-6 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300 overflow-hidden"
         >
           <!-- Gradient background animé -->
           <div

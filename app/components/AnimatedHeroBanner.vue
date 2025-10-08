@@ -31,9 +31,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative w-full h-[500px] md:h-[600px] overflow-hidden">
+  <div class="relative w-full h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden bg-white dark:bg-gray-950">
     <!-- Background avec logos qui défilent -->
-    <div class="absolute inset-0 flex flex-col justify-center gap-8 md:gap-12 opacity-20">
+    <div class="absolute inset-0 flex flex-col justify-center gap-6 sm:gap-8 md:gap-12">
       <!-- Ligne 1 - défile vers la droite -->
       <div class="flex gap-6 animate-scroll-right">
         <div
@@ -44,7 +44,7 @@ onMounted(() => {
           <img
             :src="logo"
             :alt="`Integration ${index}`"
-            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-60 relative z-10"
+            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10"
           >
         </div>
       </div>
@@ -59,7 +59,7 @@ onMounted(() => {
           <img
             :src="logo"
             :alt="`Integration ${index}`"
-            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-60 relative z-10"
+            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10"
           >
         </div>
       </div>
@@ -74,7 +74,7 @@ onMounted(() => {
           <img
             :src="logo"
             :alt="`Integration ${index}`"
-            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-60 relative z-10"
+            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10"
           >
         </div>
       </div>
@@ -89,48 +89,48 @@ onMounted(() => {
           <img
             :src="logo"
             :alt="`Integration ${index}`"
-            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-60 relative z-10"
+            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10"
           >
         </div>
       </div>
     </div>
 
-    <!-- Overlay gradient pour adoucir les bords - plus progressif -->
-    <div class="absolute inset-0 pointer-events-none" style="
-      background: linear-gradient(to right,
-        white 0%,
-        rgba(255, 255, 255, 0.8) 5%,
-        transparent 20%,
-        transparent 80%,
-        rgba(255, 255, 255, 0.8) 95%,
-        white 100%
-      );
+    <!-- Overlay gradient pour adoucir les bords - Light mode -->
+    <div class="absolute inset-0 pointer-events-none dark:hidden" style="
+      background:
+        linear-gradient(to right,
+          white 0%,
+          rgba(255, 255, 255, 0.9) 5%,
+          transparent 15%,
+          transparent 85%,
+          rgba(255, 255, 255, 0.9) 95%,
+          white 100%
+        ),
+        linear-gradient(to bottom,
+          rgba(255, 255, 255, 0.6) 0%,
+          transparent 20%,
+          transparent 80%,
+          rgba(255, 255, 255, 0.6) 100%
+        );
     " />
-    <div class="dark-gradient absolute inset-0 pointer-events-none opacity-0 dark:opacity-100" style="
-      background: linear-gradient(to right,
-        rgb(3, 7, 18) 0%,
-        rgba(3, 7, 18, 0.8) 5%,
-        transparent 20%,
-        transparent 80%,
-        rgba(3, 7, 18, 0.8) 95%,
-        rgb(3, 7, 18) 100%
-      );
-    " />
-    <div class="absolute inset-0 pointer-events-none" style="
-      background: linear-gradient(to bottom,
-        rgba(255, 255, 255, 0.5) 0%,
-        transparent 25%,
-        transparent 75%,
-        rgba(255, 255, 255, 0.5) 100%
-      );
-    " />
-    <div class="dark-gradient absolute inset-0 pointer-events-none opacity-0 dark:opacity-100" style="
-      background: linear-gradient(to bottom,
-        rgba(3, 7, 18, 0.5) 0%,
-        transparent 25%,
-        transparent 75%,
-        rgba(3, 7, 18, 0.5) 100%
-      );
+
+    <!-- Overlay gradient pour adoucir les bords - Dark mode -->
+    <div class="absolute inset-0 pointer-events-none hidden dark:block" style="
+      background:
+        linear-gradient(to right,
+          rgb(3, 7, 18) 0%,
+          rgba(3, 7, 18, 0.95) 5%,
+          transparent 15%,
+          transparent 85%,
+          rgba(3, 7, 18, 0.95) 95%,
+          rgb(3, 7, 18) 100%
+        ),
+        linear-gradient(to bottom,
+          rgba(3, 7, 18, 0.7) 0%,
+          transparent 20%,
+          transparent 80%,
+          rgba(3, 7, 18, 0.7) 100%
+        );
     " />
 
     <!-- Contenu principal - BotItYourself -->
@@ -147,7 +147,7 @@ onMounted(() => {
           <img
             src="/logos/biy_logo.png"
             alt="BotItYourself Logo"
-            class="w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mx-auto object-contain drop-shadow-2xl mb-2"
+            class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mx-auto object-contain drop-shadow-2xl mb-2"
           >
         </div>
 
@@ -156,7 +156,7 @@ onMounted(() => {
           class="transition-all duration-1000 delay-200"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
-          <h1 class="relative text-6xl md:text-7xl lg:text-8xl font-black leading-none mb-6">
+          <h1 class="relative text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-none mb-4 sm:mb-6 px-4">
             <span
               class="text-gray-800 dark:text-white"
               style="text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(139, 92, 246, 0.4)"
@@ -175,17 +175,17 @@ onMounted(() => {
           class="transition-all duration-1000 delay-[400ms]"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
-          <p class="relative text-xl md:text-3xl text-gray-600 dark:text-gray-300 font-medium">
+          <p class="relative text-lg sm:text-xl md:text-3xl text-gray-600 dark:text-gray-300 font-medium px-4">
             Connectez tout. Automatisez tout.
           </p>
         </div>
 
         <!-- Sous-titre avec effet de gradient -->
         <div
-          class="mt-6 transition-all duration-1000 delay-[600ms]"
+          class="mt-4 sm:mt-6 transition-all duration-1000 delay-[600ms]"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
-          <p class="relative text-sm md:text-lg text-gray-500 dark:text-gray-400">
+          <p class="relative text-xs sm:text-sm md:text-lg text-gray-500 dark:text-gray-400 px-4">
             Des <span class="font-semibold text-primary-600 dark:text-primary-400">milliers d'intégrations</span> à portée de main
           </p>
         </div>
@@ -233,13 +233,14 @@ onMounted(() => {
 /* Logo card avec effet de diffusion */
 .logo-card {
   padding: 0.75rem;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
   border-radius: 1rem;
-  backdrop-filter: blur(8px);
+  backdrop-filter: blur(4px);
 }
 
 .dark .logo-card {
-  background: radial-gradient(circle, rgba(75, 85, 99, 0.4) 0%, rgba(75, 85, 99, 0.2) 50%, transparent 100%);
+  background: radial-gradient(circle, rgba(100, 116, 139, 0.2) 0%, rgba(71, 85, 105, 0.1) 50%, transparent 100%);
+  backdrop-filter: blur(6px);
 }
 
 /* Animations de défilement */

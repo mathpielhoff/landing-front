@@ -3,8 +3,24 @@ import { ref, onMounted } from 'vue'
 
 const appear = ref(false)
 
-// Tous les logos d'applications disponibles (pas de LLM)
-const allLogos = [
+// Récupération de la baseURL configurée dans nuxt.config.ts
+const config = useRuntimeConfig()
+const base = config.app.baseURL
+
+/**
+ * Fonction pour corriger dynamiquement le chemin des assets
+ * Transforme '/logos/image.png' en '/landing-front/logos/image.png'
+ */
+const fixPath = (path: string) => {
+  if (!path) return ''
+  if (path.startsWith('http')) return path
+  const cleanPath = path.startsWith('/') ? path.substring(1) : path
+  const cleanBase = base.endsWith('/') ? base : `${base}/`
+  return `${cleanBase}${cleanPath}`
+}
+
+// Liste brute des logos
+const rawLogos = [
   '/logos/airtable.png', '/logos/asana.png', '/logos/monday_com.png',
   '/logos/trello.png', '/logos/figma.png', '/logos/microsoft.png',
   '/logos/zoom.png', '/logos/slack.png', '/logos/discord.png',
@@ -13,15 +29,13 @@ const allLogos = [
   '/logos/gmail.png', '/logos/hubspot.png', '/logos/zapier.png'
 ]
 
-// Créer des lignes différentes pour éviter trop de répétitions
+// Application de la correction de chemin sur tous les logos
+const allLogos = rawLogos.map(path => fixPath(path))
+
 const logoRows = [
-  // Ligne 1 - dupliquer une seule fois pour la boucle
   [...allLogos.slice(0, 9), ...allLogos.slice(0, 9)],
-  // Ligne 2 - autres logos inversés
   [...allLogos.slice(9, 18), ...allLogos.slice(9, 18)].reverse(),
-  // Ligne 3 - mélange
   [...allLogos.slice(3, 12), ...allLogos.slice(3, 12)],
-  // Ligne 4 - autre mélange inversé
   [...allLogos.slice(6, 15), ...allLogos.slice(6, 15)].reverse()
 ]
 
@@ -32,58 +46,16 @@ onMounted(() => {
 
 <template>
   <div class="relative w-full h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden bg-white dark:bg-gray-950">
-    <!-- Background avec logos qui défilent -->
     <div class="absolute inset-0 flex flex-col justify-center gap-6 sm:gap-8 md:gap-12">
-      <!-- Ligne 1 - défile vers la droite -->
-      <div class="flex gap-6 animate-scroll-right">
+      <div v-for="(row, rowIndex) in logoRows" :key="`row-container-${rowIndex}`" 
+           :class="[
+             'flex gap-6', 
+             rowIndex % 2 === 0 ? 'animate-scroll-right' : 'animate-scroll-left',
+             rowIndex > 1 ? 'duration-[60s]' : 'duration-[40s]'
+           ]">
         <div
-          v-for="(logo, index) in logoRows[0]"
-          :key="`row1-${index}`"
-          class="flex-shrink-0 relative logo-card"
-        >
-          <img
-            :src="logo"
-            :alt="`Integration ${index}`"
-            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10"
-          >
-        </div>
-      </div>
-
-      <!-- Ligne 2 - défile vers la gauche -->
-      <div class="flex gap-6 animate-scroll-left">
-        <div
-          v-for="(logo, index) in logoRows[1]"
-          :key="`row2-${index}`"
-          class="flex-shrink-0 relative logo-card"
-        >
-          <img
-            :src="logo"
-            :alt="`Integration ${index}`"
-            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10"
-          >
-        </div>
-      </div>
-
-      <!-- Ligne 3 - défile vers la droite -->
-      <div class="flex gap-6 animate-scroll-right-slow">
-        <div
-          v-for="(logo, index) in logoRows[2]"
-          :key="`row3-${index}`"
-          class="flex-shrink-0 relative logo-card"
-        >
-          <img
-            :src="logo"
-            :alt="`Integration ${index}`"
-            class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10"
-          >
-        </div>
-      </div>
-
-      <!-- Ligne 4 - défile vers la gauche -->
-      <div class="flex gap-6 animate-scroll-left-slow">
-        <div
-          v-for="(logo, index) in logoRows[3]"
-          :key="`row4-${index}`"
+          v-for="(logo, index) in row"
+          :key="`row${rowIndex}-${index}`"
           class="flex-shrink-0 relative logo-card"
         >
           <img
@@ -95,82 +67,35 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- Overlay gradient pour adoucir les bords - Light mode -->
-    <div class="absolute inset-0 pointer-events-none dark:hidden" style="
-      background:
-        linear-gradient(to right,
-          white 0%,
-          rgba(255, 255, 255, 0.9) 5%,
-          transparent 15%,
-          transparent 85%,
-          rgba(255, 255, 255, 0.9) 95%,
-          white 100%
-        ),
-        linear-gradient(to bottom,
-          rgba(255, 255, 255, 0.6) 0%,
-          transparent 20%,
-          transparent 80%,
-          rgba(255, 255, 255, 0.6) 100%
-        );
-    " />
+    <div class="absolute inset-0 pointer-events-none dark:hidden bg-gradient-overlay-light" />
+    <div class="absolute inset-0 pointer-events-none hidden dark:block bg-gradient-overlay-dark" />
 
-    <!-- Overlay gradient pour adoucir les bords - Dark mode -->
-    <div class="absolute inset-0 pointer-events-none hidden dark:block" style="
-      background:
-        linear-gradient(to right,
-          rgb(3, 7, 18) 0%,
-          rgba(3, 7, 18, 0.95) 5%,
-          transparent 15%,
-          transparent 85%,
-          rgba(3, 7, 18, 0.95) 95%,
-          rgb(3, 7, 18) 100%
-        ),
-        linear-gradient(to bottom,
-          rgba(3, 7, 18, 0.7) 0%,
-          transparent 20%,
-          transparent 80%,
-          rgba(3, 7, 18, 0.7) 100%
-        );
-    " />
-
-    <!-- Contenu principal - BotItYourself -->
     <div class="relative h-full flex items-center justify-center px-8">
       <div class="text-center relative z-10">
-        <!-- Mega glow background -->
         <div class="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-primary-600 via-purple-600 to-primary-400" />
 
-        <!-- Logo BotItYourself -->
         <div
           class="transition-all duration-1000"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
           <img
-            src="/logos/biy_logo.png"
+            :src="fixPath('/logos/biy_logo.png')"
             alt="BotItYourself Logo"
             class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 mx-auto object-contain drop-shadow-2xl mb-2"
           >
         </div>
 
-        <!-- Titre principal -->
         <div
           class="transition-all duration-1000 delay-200"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
         >
           <h1 class="relative text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-none mb-4 sm:mb-6 px-4">
-            <span
-              class="text-gray-800 dark:text-white"
-              style="text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(139, 92, 246, 0.4)"
-            >Bot</span><span
-              class="bg-gradient-to-r from-primary-600 via-purple-500 to-primary-400 bg-clip-text text-transparent animate-pulse"
-              style="text-shadow: 0 0 100px rgba(139, 92, 246, 1)"
-            >It</span><span
-              class="text-gray-800 dark:text-white"
-              style="text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(139, 92, 246, 0.4)"
-            >Yourself</span>
+            <span class="text-gray-800 dark:text-white glow-text">Bot</span><span
+              class="bg-gradient-to-r from-primary-600 via-purple-500 to-primary-400 bg-clip-text text-transparent animate-pulse glow-purple"
+            >It</span><span class="text-gray-800 dark:text-white glow-text">Yourself</span>
           </h1>
         </div>
 
-        <!-- Description -->
         <div
           class="transition-all duration-1000 delay-[400ms]"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
@@ -180,7 +105,6 @@ onMounted(() => {
           </p>
         </div>
 
-        <!-- Sous-titre avec effet de gradient -->
         <div
           class="mt-4 sm:mt-6 transition-all duration-1000 delay-[600ms]"
           :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'"
@@ -192,45 +116,14 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- Floating bubbles subtiles -->
     <div class="absolute inset-0 overflow-hidden pointer-events-none">
-      <!-- Petites bulles -->
-      <div
-        v-for="i in 30"
-        :key="`bubble-small-${i}`"
-        class="absolute rounded-full animate-bubble"
-        :class="i % 3 === 0 ? 'bg-primary/10' : i % 3 === 1 ? 'bg-purple-500/10' : 'bg-blue-500/10'"
-        :style="{
-          width: `${4 + Math.random() * 8}px`,
-          height: `${4 + Math.random() * 8}px`,
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          animationDelay: `${Math.random() * 5}s`,
-          animationDuration: `${10 + Math.random() * 15}s`
-        }"
-      />
-
-      <!-- Grandes bulles subtiles -->
-      <div
-        v-for="i in 6"
-        :key="`bubble-large-${i}`"
-        class="absolute rounded-full animate-float-slow blur-xl"
-        :class="i % 3 === 0 ? 'bg-primary/3' : i % 3 === 1 ? 'bg-purple-500/3' : 'bg-pink-500/3'"
-        :style="{
-          width: `${80 + Math.random() * 120}px`,
-          height: `${80 + Math.random() * 120}px`,
-          left: `${Math.random() * 100}%`,
-          top: `${Math.random() * 100}%`,
-          animationDelay: `${Math.random() * 10}s`,
-          animationDuration: `${20 + Math.random() * 30}s`
-        }"
-      />
+      <div v-for="i in 20" :key="`bubble-${i}`" class="absolute rounded-full animate-bubble bg-primary/10"
+           :style="{ width: '8px', height: '8px', left: `${Math.random() * 100}%`, top: `${Math.random() * 100}%`, animationDelay: `${Math.random() * 5}s` }" />
     </div>
   </div>
 </template>
 
 <style scoped>
-/* Logo card avec effet de diffusion */
 .logo-card {
   padding: 0.75rem;
   background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
@@ -240,83 +133,31 @@ onMounted(() => {
 
 .dark .logo-card {
   background: radial-gradient(circle, rgba(100, 116, 139, 0.2) 0%, rgba(71, 85, 105, 0.1) 50%, transparent 100%);
-  backdrop-filter: blur(6px);
 }
 
-/* Animations de défilement */
-@keyframes scroll-right {
-  0% {
-    transform: translateX(-50%);
-  }
-  100% {
-    transform: translateX(0%);
-  }
+.bg-gradient-overlay-light {
+  background: linear-gradient(to right, white 0%, transparent 15%, transparent 85%, white 100%),
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, transparent 20%, transparent 80%, rgba(255, 255, 255, 0.6) 100%);
 }
 
-@keyframes scroll-left {
-  0% {
-    transform: translateX(0%);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+.bg-gradient-overlay-dark {
+  background: linear-gradient(to right, rgb(3, 7, 18) 0%, transparent 15%, transparent 85%, rgb(3, 7, 18) 100%),
+              linear-gradient(to bottom, rgba(3, 7, 18, 0.7) 0%, transparent 20%, transparent 80%, rgba(3, 7, 18, 0.7) 100%);
 }
 
-.animate-scroll-right {
-  animation: scroll-right 40s linear infinite;
-  width: fit-content;
-}
+.glow-text { text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(139, 92, 246, 0.4); }
+.glow-purple { text-shadow: 0 0 100px rgba(139, 92, 246, 1); }
 
-.animate-scroll-left {
-  animation: scroll-left 40s linear infinite;
-  width: fit-content;
-}
+@keyframes scroll-right { 0% { transform: translateX(-50%); } 100% { transform: translateX(0%); } }
+@keyframes scroll-left { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
 
-.animate-scroll-right-slow {
-  animation: scroll-right 60s linear infinite;
-  width: fit-content;
-}
+.animate-scroll-right { animation: scroll-right linear infinite; width: fit-content; }
+.animate-scroll-left { animation: scroll-left linear infinite; width: fit-content; }
 
-.animate-scroll-left-slow {
-  animation: scroll-left 60s linear infinite;
-  width: fit-content;
-}
-
-/* Animations de bulles */
 @keyframes bubble {
-  0% {
-    transform: translateY(0) translateX(0) scale(1);
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 0.6;
-  }
-  100% {
-    transform: translateY(-100vh) translateX(calc(20px * var(--random, 1))) scale(1.2);
-    opacity: 0;
-  }
+  0% { transform: translateY(0); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(-100vh); opacity: 0; }
 }
-
-@keyframes float-slow {
-  0%, 100% {
-    transform: translate(0, 0) scale(1);
-  }
-  25% {
-    transform: translate(20px, -20px) scale(1.1);
-  }
-  50% {
-    transform: translate(-15px, -40px) scale(0.9);
-  }
-  75% {
-    transform: translate(-25px, -20px) scale(1.05);
-  }
-}
-
-.animate-bubble {
-  animation: bubble 15s ease-in-out infinite;
-}
-
-.animate-float-slow {
-  animation: float-slow 25s ease-in-out infinite;
-}
+.animate-bubble { animation: bubble 15s linear infinite; }
 </style>

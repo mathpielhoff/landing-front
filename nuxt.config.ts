@@ -9,6 +9,10 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   app: {
+    // Configuration pour GitHub Pages
+    baseURL: '/landing-front/', 
+    buildAssetsDir: 'assets',
+
     head: {
       title: 'BotItYourSelf.AI - Créez vos Agents IA en Minutes',
       htmlAttrs: { lang: 'fr' },
@@ -21,22 +25,22 @@ export default defineNuxtConfig({
     }
   },
 
-  // SSR pour génération statique
+  // SSR activé pour la génération de pages HTML statiques
   ssr: true,
 
-  // Configuration Nitro pour génération statique
   nitro: {
-    preset: 'static',
+    preset: 'github-pages',
     prerender: {
       crawlLinks: true,
       routes: ['/'],
       failOnError: false
-    },
-    compressPublicAssets: true
+    }
   },
 
-  // Route rules pour SPA fallback
   routeRules: {
     '/': { prerender: true }
-  }
+  },
+
+  // Nécessaire pour les versions récentes de Nuxt 3
+  compatibilityDate: '2024-04-03'
 })

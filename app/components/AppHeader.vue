@@ -49,7 +49,7 @@ nuxtApp.hooks.hookOnce('page:finish', () => {
         label="Commencer Gratuitement"
         to="#pricing"
         color="primary"
-        class="hidden lg:block"
+        class="hidden lg:block btn-glow"
       />
 
       <UColorModeButton />
@@ -62,7 +62,7 @@ nuxtApp.hooks.hookOnce('page:finish', () => {
         class="-mx-2.5"
       />
       <UButton
-        class="mt-4"
+        class="mt-4 btn-glow"
         label="Commencer Gratuitement"
         to="#pricing"
         color="primary"

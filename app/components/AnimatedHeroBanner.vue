@@ -39,30 +39,30 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="relative w-full h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden bg-white dark:bg-gray-950">
+  <div class="relative w-full h-[400px] sm:h-[500px] md:h-[600px] overflow-hidden bg-white dark:bg-[#050505]">
     <div class="absolute inset-0 flex flex-col justify-center gap-6 sm:gap-8 md:gap-12">
-      
+
       <div class="flex gap-6 animate-scroll-right">
         <div v-for="(logo, index) in logoRows[0]" :key="`row1-${index}`" class="flex-shrink-0 relative logo-card">
-          <img :src="logo" class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10">
+          <img :src="logo" class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-20 dark:opacity-30 dark:invert relative z-10">
         </div>
       </div>
 
       <div class="flex gap-6 animate-scroll-left">
         <div v-for="(logo, index) in logoRows[1]" :key="`row2-${index}`" class="flex-shrink-0 relative logo-card">
-          <img :src="logo" class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10">
+          <img :src="logo" class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-20 dark:opacity-30 dark:invert relative z-10">
         </div>
       </div>
 
       <div class="flex gap-6 animate-scroll-right-slow">
         <div v-for="(logo, index) in logoRows[2]" :key="`row3-${index}`" class="flex-shrink-0 relative logo-card">
-          <img :src="logo" class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10">
+          <img :src="logo" class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-20 dark:opacity-30 dark:invert relative z-10">
         </div>
       </div>
 
       <div class="flex gap-6 animate-scroll-left-slow">
         <div v-for="(logo, index) in logoRows[3]" :key="`row4-${index}`" class="flex-shrink-0 relative logo-card">
-          <img :src="logo" class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-30 dark:opacity-40 dark:invert relative z-10">
+          <img :src="logo" class="w-10 h-10 md:w-12 md:h-12 object-contain grayscale opacity-20 dark:opacity-30 dark:invert relative z-10">
         </div>
       </div>
     </div>
@@ -72,16 +72,16 @@ onMounted(() => {
 
     <div class="relative h-full flex items-center justify-center px-8">
       <div class="text-center relative z-10">
-        <div class="absolute inset-0 blur-3xl opacity-60 bg-gradient-to-r from-primary-600 via-purple-600 to-primary-400" />
+        <div class="absolute inset-0 blur-3xl opacity-50 bg-gradient-radial-orange" />
         <div :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="transition-all duration-1000">
           <img :src="fixPath('/logos/biy_logo.png')" alt="Logo" class="w-24 h-24 sm:w-32 sm:h-32 md:w-40 md:h-40 mx-auto object-contain drop-shadow-2xl mb-2">
         </div>
         <div :class="appear ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'" class="transition-all duration-1000 delay-200">
           <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black leading-none mb-4 px-4">
-            <span class="text-gray-800 dark:text-white glow-text">Bot</span><span class="bg-gradient-to-r from-primary-600 via-purple-500 to-primary-400 bg-clip-text text-transparent animate-pulse glow-purple">It</span><span class="text-gray-800 dark:text-white glow-text">Yourself</span>
+            <span class="text-gray-800 dark:text-white glow-text">Bot</span><span class="gradient-text-orange glow-orange">It</span><span class="text-gray-800 dark:text-white glow-text">Yourself</span>
           </h1>
         </div>
-        <p class="text-lg sm:text-xl md:text-3xl text-gray-600 dark:text-gray-300 font-medium px-4">Connectez tout. Automatisez tout.</p>
+        <p class="text-lg sm:text-xl md:text-3xl text-gray-500 dark:text-slate-400 font-medium px-4">Connectez tout. Automatisez tout.</p>
       </div>
     </div>
   </div>
@@ -90,25 +90,47 @@ onMounted(() => {
 <style scoped>
 .logo-card {
   padding: 0.75rem;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, rgba(255, 255, 255, 0.1) 50%, transparent 100%);
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 50%, transparent 100%);
   border-radius: 1rem;
   backdrop-filter: blur(4px);
 }
 .dark .logo-card {
-  background: radial-gradient(circle, rgba(100, 116, 139, 0.2) 0%, rgba(71, 85, 105, 0.1) 50%, transparent 100%);
+  background: radial-gradient(circle, rgba(148, 163, 184, 0.08) 0%, rgba(71, 85, 105, 0.04) 50%, transparent 100%);
 }
 
 .bg-gradient-overlay-light {
   background: linear-gradient(to right, white 0%, transparent 15%, transparent 85%, white 100%),
-              linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, transparent 20%, transparent 80%, rgba(255, 255, 255, 0.6) 100%);
+              linear-gradient(to bottom, rgba(255, 255, 255, 0.7) 0%, transparent 20%, transparent 80%, rgba(255, 255, 255, 0.7) 100%);
 }
 .bg-gradient-overlay-dark {
-  background: linear-gradient(to right, rgb(3, 7, 18) 0%, transparent 15%, transparent 85%, rgb(3, 7, 18) 100%),
-              linear-gradient(to bottom, rgba(3, 7, 18, 0.7) 0%, transparent 20%, transparent 80%, rgba(3, 7, 18, 0.7) 100%);
+  background: linear-gradient(to right, #050505 0%, transparent 15%, transparent 85%, #050505 100%),
+              linear-gradient(to bottom, rgba(5, 5, 5, 0.8) 0%, transparent 20%, transparent 80%, rgba(5, 5, 5, 0.8) 100%);
 }
 
-.glow-text { text-shadow: 0 8px 30px rgba(0, 0, 0, 0.2), 0 0 60px rgba(139, 92, 246, 0.4); }
-.glow-purple { text-shadow: 0 0 100px rgba(139, 92, 246, 1); }
+.bg-gradient-radial-orange {
+  background: radial-gradient(ellipse at center, rgba(255, 95, 31, 0.4) 0%, rgba(255, 95, 31, 0.1) 40%, transparent 70%);
+}
+
+.glow-text {
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.3), 0 0 60px rgba(255, 95, 31, 0.2);
+}
+
+.glow-orange {
+  text-shadow: 0 0 60px rgba(255, 95, 31, 0.8), 0 0 120px rgba(255, 95, 31, 0.4);
+}
+
+.gradient-text-orange {
+  background: linear-gradient(135deg, #FF5F1F 0%, #FF8A50 50%, #FF5F1F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.2); }
+}
 
 @keyframes scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0%); } }
 @keyframes scroll-left { from { transform: translateX(0%); } to { transform: translateX(-50%); } }

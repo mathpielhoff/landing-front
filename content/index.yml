@@ -1,73 +1,82 @@
 seo:
-  title: BotItYourSelf.AI - Créez vos Agents IA en Minutes
-  description: Plateforme SaaS pour créer des agents IA intelligents. Support multi-LLM, collaboration en équipe et 1000+ intégrations disponibles.
+  title: BotItYourSelf.AI - Stop aux tâches répétitives. Automatisez tout.
+  description: Créez des agents IA qui travaillent 24/7. Connectez tous vos outils, automatisez vos workflows et gagnez 10h par semaine. Sans écrire une ligne de code.
 
-title: 'Demandez en plus à [l''Intelligence Artificielle]{.text-primary}'
-description: La plateforme tout-en-un pour déployer des assistants intelligents qui automatisent vos tâches et boostent votre productivité.
+title: 'Arrêtez de [perdre 10h/semaine]{.text-primary} sur des tâches répétitives'
+description: Créez des agents IA qui gèrent vos emails, CRM, support client et workflows. Pendant que vous vous concentrez sur ce qui compte vraiment.
 
 hero:
   badges:
-    - label: Tous les modèles IA (OpenAI, Claude, Mistral, Gemini...)
-      icon: i-lucide-brain-circuit
-    - label: Collaborez en équipe
-      icon: i-lucide-users
+    - label: Setup en 5 minutes
+      icon: i-lucide-zap
     - label: 1000+ Intégrations
       icon: i-lucide-plug-zap
-  links: []
+    - label: ROI dès la 1ère semaine
+      icon: i-lucide-trending-up
+  cta:
+    primary:
+      label: Commencer Gratuitement
+      to: '#pricing'
+      icon: i-lucide-arrow-right
+    secondary:
+      label: Voir une démo
+      to: '#demo'
+      icon: i-lucide-play-circle
+  microcopy: Pas de carte bancaire requise • Accès instantané
 
 section:
-  title: 'Une plateforme [complète]{.text-primary} pour automatiser votre business'
-  description: Créez des agents IA qui travaillent pour vous 24/7. Choisissez le meilleur modèle pour chaque tâche et connectez tous vos outils favoris.
+  title: 'Pourquoi [10,000+ équipes]{.text-primary} nous font confiance'
+  description: Une plateforme pensée pour les équipes qui veulent automatiser sans complexité.
   features:
-    - title: Choisissez le meilleur modèle IA
-      description: OpenAI, Claude, Mistral, Gemini... Utilisez le modèle le plus adapté à chaque tâche. Changez de modèle en un clic sans toucher au code.
+    - title: Zéro courbe d'apprentissage
+      description: Interface intuitive conçue pour les équipes métier. Pas besoin de développeurs ou de prompts compliqués.
       class: border-l border-primary pl-4
-    - title: Travaillez en équipe efficacement
-      description: Chaque équipe a ses propres agents et données. Partagez vos assistants IA avec vos collaborateurs en toute sécurité. Les actions sensibles nécessitent une approbation humaine avant exécution.
+    - title: Contrôle total sur les actions sensibles
+      description: Vos agents demandent votre validation avant d'effectuer des paiements, suppressions ou envois importants.
       class: border-l border-default pt-4 pl-4
-    - title: Connectez tous vos outils
-      description: GitHub, Slack, Notion, votre CRM, vos bases de données... Plus de 1000 intégrations disponibles pour automatiser vos workflows.
+    - title: Vos données restent les vôtres
+      description: Chiffrement bout-en-bout, isolation par équipe, conformité RGPD. Zéro compromis sur la sécurité.
       class: border-l border-default pt-4 pl-4
 
 features:
-  title: 'Ce qui rend [BotItYourself unique]{.text-primary}'
-  description: Les fonctionnalités qui nous différencient vraiment des autres plateformes d'IA
-  features:
-    - title: Zéro code requis, 100% plug and play
-      description: Créez vos agents en quelques clics sans écrire une ligne de code. Interface intuitive pensée pour les équipes métier, pas pour les développeurs.
-      icon: i-lucide-zap
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
+  title: 'Automatisez ce qui vous [ralentit]{.text-primary}'
+  description: Chaque fonctionnalité résout un problème concret que vous rencontrez chaque jour
+  items:
+    - problem: "Vous passez des heures à répondre aux mêmes questions"
+      solution: "Support client 24/7"
+      description: "Un agent qui répond instantanément à 80% des demandes clients, dans leur langue, jour et nuit."
+      icon: i-lucide-message-circle
+      size: large
 
-    - title: Tous les modèles IA, toujours à jour
-      description: Accédez aux derniers modèles (GPT-4, Claude 3.5, Mistral, Gemini...) dès leur sortie. Nous ajoutons automatiquement les nouveautés IA pour que vous restiez à la pointe.
-      icon: i-lucide-brain-circuit
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
+    - problem: "Vous oubliez de relancer vos prospects"
+      solution: "Prospection automatique"
+      description: "Vos leads sont qualifiés et relancés au bon moment. Plus jamais d'opportunité perdue."
+      icon: i-lucide-target
+      size: medium
 
-    - title: Approbations humaines intelligentes
-      description: Gardez le contrôle total. Les agents demandent automatiquement votre validation avant d'effectuer des actions sensibles (paiements, suppressions, envois importants).
-      icon: i-lucide-shield-check
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
+    - problem: "Vos équipes perdent du temps à chercher l'info"
+      solution: "Assistant interne intelligent"
+      description: "Réponses instantanées depuis Notion, Slack, Drive. Comme un collègue qui sait tout."
+      icon: i-lucide-search
+      size: medium
 
-    - title: Multi-équipes avec isolation complète
-      description: Chaque équipe (Ventes, RH, IT...) a ses propres agents, données et permissions. Zéro fuite d'information entre départements.
-      icon: i-lucide-users
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
+    - problem: "Les tâches admin vous épuisent"
+      solution: "Automatisation comptable"
+      description: "Factures, rapports, relances de paiement. L'IA gère la paperasse, vous gérez le business."
+      icon: i-lucide-receipt
+      size: small
 
-    - title: 1000+ Intégrations via MCP
-      description: Connectez n'importe quel outil grâce au protocole MCP. GitHub, Slack, votre CRM interne, bases de données custom... Tout est possible.
+    - problem: "L'onboarding prend trop de temps"
+      solution: "Onboarding automatisé"
+      description: "Nouveaux clients ou employés guidés étape par étape. Formation personnalisée 24/7."
+      icon: i-lucide-graduation-cap
+      size: small
+
+    - problem: "Vous jonglez entre 15 outils"
+      solution: "Hub central unifié"
+      description: "1000+ intégrations. Un seul endroit pour tout contrôler et automatiser."
       icon: i-lucide-plug-zap
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
-
-    - title: Architecture sécurisée et scalable
-      description: Infrastructure production-ready avec chiffrement bout-en-bout, disponibilité 99.9% et capacité d'évolution automatique de 1 à 10,000 utilisateurs.
-      icon: i-lucide-shield
-      ui:
-        leading: bg-primary/10 p-3 rounded-lg border border-primary/20
+      size: small
 
 steps:
   title: 'Démarrez en [3 étapes]{.text-primary} simples'
@@ -92,21 +101,20 @@ steps:
         dark: '/images/dark/track.svg'
 
 pricing:
-  title: 'Des tarifs [simples]{.text-primary} et transparents'
-  description: Commencez gratuitement, évoluez à votre rythme
+  title: 'Investissez dans votre [productivité]{.text-primary}'
+  description: Choisissez le plan qui correspond à vos besoins. Changez à tout moment.
   plans:
     - title: Starter
-      description: Pour tester et expérimenter
+      description: Idéal pour découvrir et tester
       price: Gratuit
       billing_period: ''
-      billing_cycle: ''
+      billing_cycle: 'Pour toujours'
       features:
-        - 1 bot inclus
+        - 1 agent IA
         - 100 messages/mois
-        - 3 providers LLM (OpenAI, Mistral, Gemini)
-        - 10 outils MCP
+        - 3 modèles IA (GPT-4, Mistral, Gemini)
+        - 10 intégrations
         - Support communautaire
-        - Sessions Redis 6h
       button:
         label: Commencer Gratuitement
         color: neutral
@@ -114,7 +122,7 @@ pricing:
         to: '#'
 
     - title: Professional
-      description: Pour équipes qui veulent automatiser sérieusement
+      description: Pour les équipes qui veulent vraiment automatiser
       price: 49€
       billing_period: '/mois'
       billing_cycle: 'Facturation mensuelle'
@@ -124,39 +132,30 @@ pricing:
         - 10,000 messages/mois
         - Tous les modèles IA (10+)
         - Intégrations illimitées
-        - Collaboration en équipe (5 équipes)
-        - Approbations pour actions critiques
-        - Conversations sauvegardées 24h
-        - Statistiques et analytics
-        - Support prioritaire (email)
-        - Automatisations avancées
-        - Historique des données 90 jours
-        - Personnalisation du dashboard
-        - Webhooks personnalisés
+        - 5 espaces équipes
+        - Approbations intelligentes
+        - Historique 90 jours
+        - Analytics avancés
+        - Support prioritaire
       button:
         label: Essai gratuit 14 jours
-        variant: subtle
+        color: primary
         to: '#'
 
     - title: Enterprise
-      description: Pour grandes entreprises avec besoins spécifiques
+      description: Pour les organisations avec des besoins spécifiques
       price: Sur Devis
       billing_period: ''
       billing_cycle: 'Contactez-nous'
       features:
-        - Messages et agents illimités
-        - Équipes illimitées
-        - Installation sur vos serveurs
-        - Disponibilité 99.9% garantie
-        - Support dédié 24/7
-        - Formation de vos équipes
-        - Audit de sécurité complet
-        - Intégrations privées sécurisées
-        - Développements sur mesure
-        - Connexion unique (SSO)
-        - Gestion des permissions avancée
-        - Monitoring et alertes temps réel
-        - Environnements multiples (dev/test/prod)
+        - Tout illimité
+        - Hébergement dédié possible
+        - SLA 99.9% garanti
+        - Support 24/7 dédié
+        - Formation sur mesure
+        - SSO & SAML
+        - Audit de sécurité
+        - API personnalisée
       button:
         label: Contactez-nous
         color: neutral
@@ -164,15 +163,16 @@ pricing:
         to: '#'
 
 cta:
-  title: 'Prêt à [automatiser votre travail]{.text-primary} ?'
-  description: Créez votre premier agent IA en 5 minutes et gagnez des heures chaque semaine
+  title: 'Récupérez [10h par semaine]{.text-primary}. Dès aujourd''hui.'
+  description: Rejoignez les équipes qui ont déjà automatisé 80% de leurs tâches répétitives
   links:
-    - label: Commencer Gratuitement
+    - label: Créer mon premier agent
       to: '#pricing'
       trailingIcon: i-lucide-arrow-right
       color: white
-    - label: Voir une Démo
+    - label: Réserver une démo
       to: '#'
       variant: outline
-      icon: i-lucide-play-circle
+      icon: i-lucide-calendar
       color: white
+  microcopy: Gratuit pour commencer • Setup en 5 minutes • Support inclus

@@ -24,11 +24,9 @@ useSeoMeta({
     </UContainer>
 
     <UPageHero
-      :description="page.description"
-      :links="page.hero.links"
       :ui="{
         container: 'pt-8 sm:pt-12 md:pt-18 lg:pt-20 px-4',
-        title: 'max-w-3xl mx-auto'
+        title: 'max-w-4xl mx-auto'
       }"
     >
       <template #top>
@@ -36,19 +34,56 @@ useSeoMeta({
       </template>
 
       <template #title>
-        <MDC
-          :value="page.title"
-          unwrap="p"
-        />
+        <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-hero tracking-tight text-gray-900 dark:text-white">
+          <MDC
+            :value="page.title"
+            unwrap="p"
+          />
+        </h1>
       </template>
 
       <template #description>
-        <p class="text-base sm:text-lg text-muted mb-6">
+        <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 mb-8 max-w-2xl mx-auto leading-relaxed">
           {{ page.description }}
         </p>
 
+        <!-- Primary CTA with Glow -->
+        <div class="flex flex-col items-center gap-4 mb-6">
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <UButton
+              :to="page.hero.cta.primary.to"
+              size="xl"
+              color="primary"
+              class="btn-glow btn-mobile px-8 py-4 text-lg font-semibold"
+            >
+              {{ page.hero.cta.primary.label }}
+              <template #trailing>
+                <UIcon :name="page.hero.cta.primary.icon" class="w-5 h-5" />
+              </template>
+            </UButton>
+            <UButton
+              :to="page.hero.cta.secondary.to"
+              size="xl"
+              variant="outline"
+              color="neutral"
+              class="btn-mobile px-8 py-4 text-lg"
+            >
+              <template #leading>
+                <UIcon :name="page.hero.cta.secondary.icon" class="w-5 h-5" />
+              </template>
+              {{ page.hero.cta.secondary.label }}
+            </UButton>
+          </div>
+
+          <!-- Micro-copy -->
+          <p class="text-sm text-slate-500 dark:text-slate-500 flex items-center gap-2">
+            <UIcon name="i-lucide-shield-check" class="w-4 h-4 text-green-500" />
+            {{ page.hero.microcopy }}
+          </p>
+        </div>
+
         <!-- Key Differentiators Badges -->
-        <div class="flex flex-wrap gap-2 sm:gap-3 justify-center mb-8">
+        <div class="flex flex-wrap gap-2 sm:gap-3 justify-center mt-8">
           <UBadge
             v-for="(badge, index) in page.hero.badges"
             :key="index"
@@ -69,110 +104,132 @@ useSeoMeta({
       </template>
     </UPageHero>
 
-    <!-- Conversation Scenario - Scénario concret animé -->
-    <ConversationScenario />
+    <!-- Social Proof - Trusted By Section -->
+    <TrustedBy />
 
-    <!-- Use Cases par industrie -->
-    <UseCases />
+    <!-- Product Showcase with Overlapping UI -->
+    <ProductShowcase />
 
-    <USeparator :ui="{ border: 'border-primary/30' }" />
-
-    <UPageSection
-      id="features"
+    <!-- Bento Grid Features - Problem/Solution Pairs -->
+    <BentoFeatures
+      :title="page.features.title"
       :description="page.features.description"
-      :features="page.features.features"
-      :ui="{
-        title: 'text-left @container relative flex',
-        description: 'text-left'
-      }"
-      class="relative overflow-hidden"
-    >
-      <div class="absolute rounded-full -left-10 top-10 size-[300px] z-10 bg-primary opacity-30 blur-[200px]" />
-      <div class="absolute rounded-full -right-10 -bottom-10 size-[300px] z-10 bg-primary opacity-30 blur-[200px]" />
-      <template #title>
-        <MDC
-          :value="page.features.title"
-          class="*:leading-9"
-        />
-        <!-- Ligne décorative 2 désactivée -->
-        <!-- <div class="hidden @min-[1020px]:block">
-          <UColorModeImage
-            light="/images/light/line-2.svg"
-            dark="/images/dark/line-2.svg"
-            class="absolute top-0 right-0 size-full transform scale-95 translate-x-[70%]"
+      :items="page.features.items"
+    />
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 sm:py-28 relative overflow-hidden">
+      <!-- Background Elements -->
+      <div class="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[150px] pointer-events-none" />
+
+      <UContainer>
+        <!-- Section Header -->
+        <div class="text-center mb-12 sm:mb-16">
+          <UBadge variant="subtle" color="primary" class="mb-4">
+            <template #leading>
+              <UIcon name="i-lucide-credit-card" class="w-3.5 h-3.5" />
+            </template>
+            Pricing
+          </UBadge>
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+            <MDC :value="page.pricing.title" unwrap="p" />
+          </h2>
+          <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
+            {{ page.pricing.description }}
+          </p>
+        </div>
+
+        <!-- Pricing Cards -->
+        <UPricingPlans scale>
+          <UPricingPlan
+            v-for="(plan, index) in page.pricing.plans"
+            :key="index"
+            :title="plan.title"
+            :description="plan.description"
+            :price="plan.price"
+            :billing-period="plan.billing_period"
+            :billing-cycle="plan.billing_cycle"
+            :highlight="plan.highlight"
+            :scale="plan.highlight"
+            variant="soft"
+            :features="plan.features"
+            :button="plan.button"
+            :class="plan.highlight ? 'ring-2 ring-primary shadow-lg shadow-primary/20' : ''"
           />
-        </div> -->
-      </template>
-    </UPageSection>
+        </UPricingPlans>
 
-    <UPageSection
-      id="pricing"
-      class="mb-20 sm:mb-32 overflow-hidden px-4"
-      :title="page.pricing.title"
-      :description="page.pricing.description"
-      :plans="page.pricing.plans"
-      :ui="{ title: 'text-left @container relative', description: 'text-left' }"
-    >
-      <template #title>
-        <MDC :value="page.pricing.title" />
-
-        <!-- Ligne décorative 4 désactivée -->
-        <!-- <div class="hidden @min-[1120px]:block">
-          <UColorModeImage
-            light="/images/light/line-4.svg"
-            dark="/images/dark/line-4.svg"
-            class="absolute top-0 right-0 size-full transform translate-x-[60%]"
-          />
-        </div> -->
-      </template>
-
-      <UPricingPlans scale>
-        <UPricingPlan
-          v-for="(plan, index) in page.pricing.plans"
-          :key="index"
-          :title="plan.title"
-          :description="plan.description"
-          :price="plan.price"
-          :billing-period="plan.billing_period"
-          :billing-cycle="plan.billing_cycle"
-          :highlight="plan.highlight"
-          :scale="plan.highlight"
-          variant="soft"
-          :features="plan.features"
-          :button="plan.button"
-        />
-      </UPricingPlans>
-    </UPageSection>
+        <!-- Trust Elements -->
+        <div class="flex flex-wrap justify-center items-center gap-6 mt-12 text-sm text-slate-500">
+          <span class="flex items-center gap-2">
+            <UIcon name="i-lucide-shield-check" class="w-4 h-4 text-green-500" />
+            Secure payment
+          </span>
+          <span class="flex items-center gap-2">
+            <UIcon name="i-lucide-refresh-cw" class="w-4 h-4 text-green-500" />
+            Cancel anytime
+          </span>
+          <span class="flex items-center gap-2">
+            <UIcon name="i-lucide-headphones" class="w-4 h-4 text-green-500" />
+            Priority support
+          </span>
+        </div>
+      </UContainer>
+    </section>
 
     <!-- FAQ Section -->
     <FAQSection />
 
-    <USeparator />
+    <!-- Final CTA Section -->
+    <section class="py-20 sm:py-28 relative overflow-hidden">
+      <!-- Background -->
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent pointer-events-none" />
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[200px] pointer-events-none" />
 
-    <UPageCTA
-      v-bind="page.cta"
-      variant="naked"
-      class="overflow-hidden @container"
-    >
-      <template #title>
-        <MDC :value="page.cta.title" />
+      <UContainer class="relative z-10">
+        <div class="text-center max-w-3xl mx-auto">
+          <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+            <MDC :value="page.cta.title" unwrap="p" />
+          </h2>
+          <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-400 mb-8">
+            {{ page.cta.description }}
+          </p>
 
-        <!-- Lignes décoratives 6 et 7 désactivées -->
-        <!-- <div class="@max-[1280px]:hidden">
-          <UColorModeImage
-            light="/images/light/line-6.svg"
-            dark="/images/dark/line-6.svg"
-            class="absolute left-10 -top-10 sm:top-0 h-full"
-          />
-          <UColorModeImage
-            light="/images/light/line-7.svg"
-            dark="/images/dark/line-7.svg"
-            class="absolute right-0 bottom-0 h-full"
-          />
-        </div> -->
-      </template>
+          <!-- CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
+            <UButton
+              :to="page.cta.links[0].to"
+              size="xl"
+              color="primary"
+              class="btn-glow btn-mobile px-8 py-4 text-lg font-semibold"
+            >
+              {{ page.cta.links[0].label }}
+              <template #trailing>
+                <UIcon :name="page.cta.links[0].trailingIcon" class="w-5 h-5" />
+              </template>
+            </UButton>
+            <UButton
+              :to="page.cta.links[1].to"
+              size="xl"
+              :variant="page.cta.links[1].variant"
+              color="neutral"
+              class="btn-mobile px-8 py-4 text-lg"
+            >
+              <template #leading>
+                <UIcon :name="page.cta.links[1].icon" class="w-5 h-5" />
+              </template>
+              {{ page.cta.links[1].label }}
+            </UButton>
+          </div>
 
+          <!-- Micro-copy -->
+          <p class="text-sm text-slate-500 dark:text-slate-500">
+            {{ page.cta.microcopy }}
+          </p>
+        </div>
+      </UContainer>
+
+      <!-- Stars Background -->
       <LazyStarsBg />
-    </UPageCTA>
+    </section>
   </div>
 </template>

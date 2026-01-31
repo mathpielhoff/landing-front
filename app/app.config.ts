@@ -1,8 +1,8 @@
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'sky',
-      neutral: 'neutral'
+      primary: 'orange',
+      neutral: 'slate'
     },
     header: {
       logo: {

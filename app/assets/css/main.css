@@ -5,4 +5,284 @@
 
 @theme {
   --font-sans: 'Public Sans', sans-serif;
+
+  /* Brand Colors */
+  --color-brand-orange: #FF5F1F;
+  --color-brand-black: #050505;
+  --color-brand-slate: #94A3B8;
+
+  /* Custom Orange Palette for Primary */
+  --color-orange-50: #FFF7ED;
+  --color-orange-100: #FFEDD5;
+  --color-orange-200: #FED7AA;
+  --color-orange-300: #FDBA74;
+  --color-orange-400: #FB923C;
+  --color-orange-500: #FF5F1F;
+  --color-orange-600: #EA580C;
+  --color-orange-700: #C2410C;
+  --color-orange-800: #9A3412;
+  --color-orange-900: #7C2D12;
+  --color-orange-950: #431407;
+}
+
+/* Deep Black Background */
+.dark body,
+.dark {
+  --color-background: #050505;
+  background-color: #050505;
+}
+
+/* Primary CTA Button Glow Effect */
+.btn-glow {
+  box-shadow: 0px 0px 20px rgba(255, 95, 31, 0.3);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.btn-glow:hover {
+  box-shadow: 0px 0px 30px rgba(255, 95, 31, 0.5);
+  transform: translateY(-2px);
+}
+
+/* Enhanced Typography for Dark Mode */
+.text-hero {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+.text-body-lg {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--color-brand-slate);
+}
+
+/* Slate Grey for secondary text */
+.text-slate-secondary {
+  color: #94A3B8;
+}
+
+/* Orange Glow Text Effect */
+.glow-orange {
+  text-shadow: 0 0 40px rgba(255, 95, 31, 0.6), 0 0 80px rgba(255, 95, 31, 0.4);
+}
+
+/* Gradient Text with Orange */
+.gradient-text-orange {
+  background: linear-gradient(135deg, #FF5F1F 0%, #FF8A50 50%, #FF5F1F 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Bento Grid Styles */
+.bento-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 1.5rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.bento-card:hover {
+  border-color: rgba(255, 95, 31, 0.3);
+  box-shadow: 0 0 40px rgba(255, 95, 31, 0.1);
+}
+
+.dark .bento-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.005) 100%);
+}
+
+/* Product Showcase Glow */
+.showcase-glow {
+  box-shadow:
+    0 0 60px rgba(255, 95, 31, 0.15),
+    0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+/* Mobile-First Touch Targets */
+@media (max-width: 640px) {
+  .btn-mobile {
+    min-height: 48px;
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+}
+
+/* WCAG AA Compliant Focus States */
+:focus-visible {
+  outline: 2px solid #FF5F1F;
+  outline-offset: 2px;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ================================
+   TYPOGRAPHY HIERARCHY
+   ================================ */
+
+/* Headings - Bold and Legible */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-weight: 800; }
+h2 { font-weight: 700; }
+
+/* Body Text - Readable Line Height for Dark Mode */
+body {
+  line-height: 1.6;
+}
+
+p {
+  line-height: 1.75;
+}
+
+/* ================================
+   ACCESSIBILITY - WCAG AA
+   ================================ */
+
+/* Skip to content link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  background: #FF5F1F;
+  color: white;
+  padding: 8px 16px;
+  z-index: 100;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Enhanced contrast for orange on dark */
+.dark .text-primary {
+  color: #FF7A3D; /* Slightly lighter for better contrast on black */
+}
+
+/* Ensure links have visible hover states */
+a:hover {
+  opacity: 0.9;
+}
+
+/* Reduced motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ================================
+   MOBILE RESPONSIVENESS
+   ================================ */
+
+/* Touch-friendly tap targets */
+@media (max-width: 640px) {
+  button,
+  a[role="button"],
+  input[type="submit"],
+  input[type="button"] {
+    min-height: 44px;
+  }
+
+  /* Larger touch areas for navigation */
+  nav a {
+    padding: 12px 16px;
+  }
+}
+
+/* Better spacing on mobile */
+@media (max-width: 768px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+}
+
+/* Responsive font sizes */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 2rem;
+    line-height: 1.15;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    line-height: 1.2;
+  }
+
+  p {
+    font-size: 1rem;
+    line-height: 1.65;
+  }
+}
+
+/* ================================
+   DARK MODE ENHANCEMENTS
+   ================================ */
+
+.dark {
+  /* Subtle text shadow for legibility on pure black */
+  color: #F1F5F9;
+}
+
+.dark p,
+.dark .text-muted {
+  color: #94A3B8;
+}
+
+/* ================================
+   SELECTION STYLING
+   ================================ */
+
+::selection {
+  background-color: rgba(255, 95, 31, 0.3);
+  color: inherit;
+}
+
+/* ================================
+   ANIMATION UTILITIES
+   ================================ */
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.6s ease-out forwards;
+}
+
+@keyframes pulse-subtle {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 2s ease-in-out infinite;
 }

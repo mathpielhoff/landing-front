@@ -107,8 +107,8 @@ useSeoMeta({
     <!-- Social Proof - Trusted By Section -->
     <TrustedBy />
 
-    <!-- Product Showcase with Overlapping UI -->
-    <ProductShowcase />
+    <!-- Interactive Agent Demo -->
+    <AgentDemo />
 
     <!-- Bento Grid Features - Problem/Solution Pairs -->
     <BentoFeatures

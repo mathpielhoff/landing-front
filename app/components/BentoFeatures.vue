@@ -87,23 +87,33 @@ const props = defineProps<{
 </template>
 
 <style scoped>
+/* Light mode - default */
 .bento-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 1.5rem;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 .bento-card:hover {
-  border-color: rgba(255, 95, 31, 0.3);
-  box-shadow: 0 0 40px rgba(255, 95, 31, 0.1);
+  border-color: rgba(255, 95, 31, 0.4);
+  box-shadow: 0 0 40px rgba(255, 95, 31, 0.15);
   transform: translateY(-2px);
 }
 
-/* Light mode adjustments */
-:not(.dark) .bento-card {
-  background: linear-gradient(145deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.6) 100%);
-  border: 1px solid rgba(0, 0, 0, 0.06);
+/* Dark mode */
+:root.dark .bento-card,
+.dark .bento-card {
+  background: linear-gradient(145deg, rgba(30, 30, 35, 0.9) 0%, rgba(20, 20, 25, 0.85) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+:root.dark .bento-card:hover,
+.dark .bento-card:hover {
+  border-color: rgba(255, 95, 31, 0.5);
+  box-shadow: 0 0 50px rgba(255, 95, 31, 0.2);
 }
 </style>

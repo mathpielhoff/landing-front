@@ -110,6 +110,9 @@ useSeoMeta({
     <!-- Interactive Agent Demo -->
     <AgentDemo />
 
+    <!-- Platform Capabilities - Personalization, Approval, Team Isolation -->
+    <PlatformCapabilities />
+
     <!-- Bento Grid Features - Problem/Solution Pairs -->
     <BentoFeatures
       :title="page.features.title"

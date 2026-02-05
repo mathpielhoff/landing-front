@@ -2,22 +2,27 @@
 const faqs = [
   {
     label: 'Est-ce vraiment sans code ? Je ne suis pas technique.',
-    content: 'Oui, 100% sans code. Si vous savez utiliser Slack ou Gmail, vous saurez créer un agent. Notre interface est conçue pour les équipes métier : vous décrivez ce que l\'agent doit faire en français, vous connectez vos outils en quelques clics, et c\'est parti. Nos utilisateurs créent leur premier agent en moins de 5 minutes.',
+    content: 'Oui, 100% sans code. Si vous savez utiliser Slack ou Gmail, vous saurez créer un agent. Vous décrivez ce que l\'agent doit faire en français, vous choisissez son ton (formel, amical, technique...), vous connectez vos outils en quelques clics, et c\'est parti. Nos utilisateurs créent leur premier agent en moins de 5 minutes.',
     defaultOpen: true
   },
   {
     label: 'Mes données sont-elles en sécurité ?',
-    content: 'Absolument. Chiffrement bout-en-bout, isolation par équipe, serveurs en Europe (RGPD), et SOC 2 Type II en cours. Vos agents n\'accèdent qu\'aux données que vous autorisez explicitement. Option d\'hébergement sur vos propres serveurs disponible pour les entreprises.',
+    content: 'Absolument. Chaque équipe dispose de son propre espace isolé : agents, données et configurations sont strictement cloisonnés. Chiffrement bout-en-bout, serveurs en Europe (RGPD), et SOC 2 Type II en cours. Vos agents n\'accèdent qu\'aux données que vous autorisez explicitement.',
     defaultOpen: false
   },
   {
     label: 'Que se passe-t-il si l\'IA fait une erreur ?',
-    content: 'Vous gardez le contrôle. Les actions sensibles (paiements, suppressions, envois importants) nécessitent votre approbation avant exécution. Vous pouvez aussi définir des règles précises et des limites. L\'IA propose, vous disposez.',
+    content: 'Vous gardez le contrôle total. Chaque action (outil) peut être placée sous approbation humaine : paiements, suppressions, envois — rien ne s\'exécute sans votre feu vert. Vous définissez quelles actions nécessitent une validation et quelles actions sont automatiques. L\'IA propose, vous disposez.',
     defaultOpen: false
   },
   {
     label: 'Combien de temps pour voir un ROI ?',
     content: 'La plupart de nos utilisateurs voient des résultats dès la première semaine. Un agent support traite instantanément 80% des demandes récurrentes. Un agent prospection relance vos leads automatiquement. Calculez : 10h/semaine gagnées × votre taux horaire = ROI immédiat.',
+    defaultOpen: false
+  },
+  {
+    label: 'Puis-je avoir plusieurs équipes dans la même organisation ?',
+    content: 'Oui. Chaque équipe (Marketing, Support, Finance...) dispose de son propre espace avec ses agents, données et permissions dédiées. Les agents d\'une équipe n\'ont pas accès aux données des autres. Idéal pour les entreprises qui veulent centraliser l\'IA tout en gardant un cloisonnement strict.',
     defaultOpen: false
   },
   {

@@ -28,14 +28,14 @@ section:
   title: 'Pourquoi [10,000+ équipes]{.text-primary} nous font confiance'
   description: Une plateforme pensée pour les équipes qui veulent automatiser sans complexité.
   features:
-    - title: Zéro courbe d'apprentissage
-      description: Interface intuitive conçue pour les équipes métier. Pas besoin de développeurs ou de prompts compliqués.
+    - title: Des agents à votre image
+      description: Personnalisez le ton, les instructions et la personnalité de chaque agent. Formel, amical, technique — vous décidez.
       class: border-l border-primary pl-4
     - title: Contrôle total sur les actions sensibles
-      description: Vos agents demandent votre validation avant d'effectuer des paiements, suppressions ou envois importants.
+      description: Placez n'importe quelle action sous approbation humaine. Paiements, envois, suppressions — rien ne se fait sans votre feu vert.
       class: border-l border-default pt-4 pl-4
-    - title: Vos données restent les vôtres
-      description: Chiffrement bout-en-bout, isolation par équipe, conformité RGPD. Zéro compromis sur la sécurité.
+    - title: Isolation et sécurité par équipe
+      description: Chaque équipe a ses propres agents et données, cloisonnés et sécurisés. Chiffrement bout-en-bout, conformité RGPD.
       class: border-l border-default pt-4 pl-4
 
 features:
@@ -83,13 +83,13 @@ steps:
   description: Créez votre premier agent IA et automatisez vos tâches en moins de 5 minutes
   items:
     - title: 1. Créez votre agent IA
-      description: Choisissez le modèle IA adapté à votre besoin (OpenAI, Claude, Mistral...). Expliquez-lui simplement ce qu'il doit faire, comme à un assistant.
+      description: Choisissez le modèle IA, définissez le ton et les instructions de votre agent. Formel pour le support, persuasif pour la vente — c'est vous qui décidez.
       image:
         light: '/images/light/connect.svg'
         dark: '/images/dark/connect.svg'
 
     - title: 2. Connectez vos outils favoris
-      description: Donnez accès à vos applications (GitHub, Slack, Notion, CRM...). Votre agent pourra lire et agir sur vos données automatiquement.
+      description: Donnez accès à vos applications (GitHub, Slack, Notion, CRM...) et choisissez quelles actions nécessitent votre approbation.
       image:
         light: '/images/light/optimize.svg'
         dark: '/images/dark/optimize.svg'
@@ -110,10 +110,11 @@ pricing:
       billing_period: ''
       billing_cycle: 'Pour toujours'
       features:
-        - 1 agent IA
+        - 1 agent IA personnalisable
         - 100 messages/mois
         - 3 modèles IA (GPT-4, Mistral, Gemini)
         - 10 intégrations
+        - Approbation humaine incluse
         - Support communautaire
       button:
         label: Commencer Gratuitement
@@ -128,12 +129,13 @@ pricing:
       billing_cycle: 'Facturation mensuelle'
       highlight: true
       features:
-        - Agents illimités
+        - Agents illimités & personnalisables
         - 10,000 messages/mois
         - Tous les modèles IA (10+)
         - Intégrations illimitées
-        - 5 espaces équipes
-        - Approbations intelligentes
+        - 5 espaces équipes isolés
+        - Approbations humaines avancées
+        - Instructions & ton par agent
         - Historique 90 jours
         - Analytics avancés
         - Support prioritaire
@@ -149,12 +151,13 @@ pricing:
       billing_cycle: 'Contactez-nous'
       features:
         - Tout illimité
+        - Équipes & organisations illimitées
+        - Personnalisation complète des agents
+        - Workflows d'approbation sur-mesure
         - Hébergement dédié possible
         - SLA 99.9% garanti
+        - SSO, SAML & audit de sécurité
         - Support 24/7 dédié
-        - Formation sur mesure
-        - SSO & SAML
-        - Audit de sécurité
         - API personnalisée
       button:
         label: Contactez-nous

@@ -2,11 +2,12 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 
 interface ChatMessage {
-  type: 'user' | 'agent' | 'tool'
+  type: 'user' | 'agent' | 'tool' | 'approval'
   content: string
   toolName?: string
   toolStatus?: 'running' | 'success' | 'error'
   toolResult?: string
+  approvalStatus?: 'pending' | 'approved'
   visible: boolean
 }
 
@@ -25,6 +26,12 @@ const messages = ref<ChatMessage[]>([
     visible: false
   },
   {
+    type: 'approval',
+    content: 'Envoyer 3 emails de rappel de paiement via Gmail',
+    approvalStatus: 'pending',
+    visible: false
+  },
+  {
     type: 'tool',
     content: 'Envoi des emails de rappel...',
     toolName: 'Gmail',
@@ -34,48 +41,52 @@ const messages = ref<ChatMessage[]>([
   },
   {
     type: 'agent',
-    content: 'C\'est fait ! J\'ai envoyé 3 rappels de paiement :\n\n• **TechCorp** - 850€ (12 jours de retard)\n• **StartupX** - 1 200€ (9 jours de retard)\n• **AgenceDigital** - 400€ (8 jours de retard)\n\nJe te notifie dès qu\'un paiement arrive.',
+    content: 'C\'est fait ! J\'ai envoyé 3 rappels de paiement.',
     visible: false
   }
 ])
 
-const currentStep = ref(0)
 const isAnimating = ref(false)
-let animationInterval: ReturnType<typeof setInterval> | null = null
+let timeouts: ReturnType<typeof setTimeout>[] = []
+
+const clearAllTimeouts = () => {
+  timeouts.forEach(t => clearTimeout(t))
+  timeouts = []
+}
+
+const scheduleTimeout = (fn: () => void, delay: number) => {
+  const t = setTimeout(fn, delay)
+  timeouts.push(t)
+}
 
 const startAnimation = () => {
   if (isAnimating.value) return
   isAnimating.value = true
-  currentStep.value = 0
 
   // Reset all messages
   messages.value.forEach(m => {
     m.visible = false
     if (m.toolStatus) m.toolStatus = 'running'
+    if (m.approvalStatus) m.approvalStatus = 'pending'
   })
 
   const steps = [
     { delay: 500, action: () => { messages.value[0].visible = true } },
     { delay: 1500, action: () => { messages.value[1].visible = true } },
-    { delay: 2500, action: () => { messages.value[1].toolStatus = 'success' } },
-    { delay: 3000, action: () => { messages.value[2].visible = true } },
-    { delay: 4000, action: () => { messages.value[2].toolStatus = 'success' } },
-    { delay: 4500, action: () => { messages.value[3].visible = true } },
-    { delay: 10000, action: () => { startAnimation() } } // Restart loop
+    { delay: 2800, action: () => { messages.value[1].toolStatus = 'success' } },
+    { delay: 3300, action: () => { messages.value[2].visible = true } },
+    { delay: 5000, action: () => { messages.value[2].approvalStatus = 'approved' } },
+    { delay: 5500, action: () => { messages.value[3].visible = true } },
+    { delay: 6800, action: () => { messages.value[3].toolStatus = 'success' } },
+    { delay: 7300, action: () => { messages.value[4].visible = true } },
+    { delay: 12000, action: () => { isAnimating.value = false; startAnimation() } }
   ]
 
-  let currentIndex = 0
-  const runStep = () => {
-    if (currentIndex < steps.length) {
-      setTimeout(() => {
-        steps[currentIndex].action()
-        currentIndex++
-        runStep()
-      }, steps[currentIndex].delay)
-    }
-  }
-
-  runStep()
+  let cumulative = 0
+  steps.forEach((step) => {
+    cumulative += step.delay
+    scheduleTimeout(step.action, cumulative)
+  })
 }
 
 onMounted(() => {
@@ -83,14 +94,12 @@ onMounted(() => {
 })
 
 onUnmounted(() => {
-  if (animationInterval) {
-    clearInterval(animationInterval)
-  }
+  clearAllTimeouts()
 })
 </script>
 
 <template>
-  <section class="py-20 sm:py-28 relative overflow-hidden">
+  <section id="demo" class="py-20 sm:py-28 relative overflow-hidden">
     <!-- Background -->
     <div class="absolute inset-0 pointer-events-none">
       <div class="absolute top-1/4 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[150px]" />
@@ -110,7 +119,7 @@ onUnmounted(() => {
           Voyez votre agent <span class="gradient-text-orange">en action</span>
         </h2>
         <p class="text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-          Une simple demande en langage naturel. L'agent comprend, agit et vous rapporte.
+          Une simple demande en langage naturel. L'agent comprend, demande votre approbation et agit.
         </p>
       </div>
 
@@ -148,7 +157,7 @@ onUnmounted(() => {
           </div>
 
           <!-- Chat Messages -->
-          <div class="p-5 space-y-4 min-h-[380px] bg-slate-950">
+          <div class="p-5 space-y-4 min-h-[420px] bg-slate-950">
             <!-- User Message -->
             <Transition name="message">
               <div v-if="messages[0].visible" class="flex justify-end">
@@ -190,9 +199,59 @@ onUnmounted(() => {
               </div>
             </Transition>
 
-            <!-- Tool 2: Gmail -->
+            <!-- Human Approval Card -->
             <Transition name="message">
               <div v-if="messages[2].visible" class="flex items-start gap-3">
+                <div class="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center shrink-0">
+                  <UIcon name="i-lucide-shield-check" class="w-4 h-4 text-amber-400" />
+                </div>
+                <div class="flex-1">
+                  <div class="approval-card rounded-xl px-4 py-3">
+                    <div class="flex items-center gap-2 mb-2">
+                      <UIcon name="i-lucide-alert-triangle" class="w-3.5 h-3.5 text-amber-400" />
+                      <span class="text-xs font-semibold text-amber-400 uppercase tracking-wider">Approbation requise</span>
+                    </div>
+                    <p class="text-sm text-slate-200 mb-3">
+                      {{ messages[2].content }}
+                    </p>
+                    <div class="flex items-center gap-3 text-xs text-slate-500 mb-3">
+                      <span class="flex items-center gap-1">
+                        <UIcon name="i-lucide-mail" class="w-3 h-3" />
+                        3 destinataires
+                      </span>
+                      <span class="flex items-center gap-1">
+                        <UIcon name="i-lucide-euro" class="w-3 h-3" />
+                        2 450€ concernés
+                      </span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                      <button
+                        :class="[
+                          'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-300',
+                          messages[2].approvalStatus === 'approved'
+                            ? 'bg-green-500/30 text-green-300 border border-green-500/40'
+                            : 'bg-green-500/10 text-green-400 border border-green-500/20 hover:bg-green-500/20 approval-pulse'
+                        ]"
+                      >
+                        <UIcon :name="messages[2].approvalStatus === 'approved' ? 'i-lucide-check-circle' : 'i-lucide-check'" class="w-3.5 h-3.5" />
+                        {{ messages[2].approvalStatus === 'approved' ? 'Approuvé' : 'Approuver' }}
+                      </button>
+                      <button
+                        v-if="messages[2].approvalStatus !== 'approved'"
+                        class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium bg-slate-700/50 text-slate-400 border border-slate-600/30 hover:bg-red-500/10 hover:text-red-400 hover:border-red-500/20 transition-colors"
+                      >
+                        <UIcon name="i-lucide-x" class="w-3.5 h-3.5" />
+                        Refuser
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Transition>
+
+            <!-- Tool 2: Gmail (after approval) -->
+            <Transition name="message">
+              <div v-if="messages[3].visible" class="flex items-start gap-3">
                 <div class="w-8 h-8 rounded-lg bg-slate-800 flex items-center justify-center shrink-0">
                   <UIcon name="i-simple-icons-gmail" class="w-4 h-4 text-[#EA4335]" />
                 </div>
@@ -203,18 +262,18 @@ onUnmounted(() => {
                       <span
                         :class="[
                           'text-xs px-2 py-0.5 rounded-full',
-                          messages[2].toolStatus === 'success'
+                          messages[3].toolStatus === 'success'
                             ? 'bg-green-500/20 text-green-400'
                             : 'bg-yellow-500/20 text-yellow-400'
                         ]"
                       >
-                        {{ messages[2].toolStatus === 'success' ? 'Terminé' : 'En cours...' }}
+                        {{ messages[3].toolStatus === 'success' ? 'Terminé' : 'En cours...' }}
                       </span>
                     </div>
                     <p class="text-sm text-slate-300">
-                      {{ messages[2].toolStatus === 'success' ? messages[2].toolResult : messages[2].content }}
+                      {{ messages[3].toolStatus === 'success' ? messages[3].toolResult : messages[3].content }}
                     </p>
-                    <div v-if="messages[2].toolStatus === 'running'" class="mt-2 h-1 bg-slate-700 rounded-full overflow-hidden">
+                    <div v-if="messages[3].toolStatus === 'running'" class="mt-2 h-1 bg-slate-700 rounded-full overflow-hidden">
                       <div class="h-full bg-primary animate-loading-bar" />
                     </div>
                   </div>
@@ -224,7 +283,7 @@ onUnmounted(() => {
 
             <!-- Agent Response -->
             <Transition name="message">
-              <div v-if="messages[3].visible" class="flex items-start gap-3">
+              <div v-if="messages[4].visible" class="flex items-start gap-3">
                 <div class="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center shrink-0">
                   <UIcon name="i-lucide-bot" class="w-4 h-4 text-primary" />
                 </div>
@@ -297,8 +356,27 @@ onUnmounted(() => {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
+.approval-card {
+  background: linear-gradient(145deg, rgba(40, 35, 20, 0.8) 0%, rgba(30, 25, 15, 0.9) 100%);
+  border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
 .btn-glow {
   box-shadow: 0px 0px 20px rgba(255, 95, 31, 0.4);
+}
+
+/* Approval pulse animation */
+@keyframes approval-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+  }
+  50% {
+    box-shadow: 0 0 12px 2px rgba(34, 197, 94, 0.3);
+  }
+}
+
+.approval-pulse {
+  animation: approval-glow 2s ease-in-out infinite;
 }
 
 /* Message transitions */
